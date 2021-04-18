@@ -214,7 +214,7 @@ class Record {
         point.setTranslateX(transX);
         point.setTranslateY(transY);
         Tooltip tooltip = new Tooltip(this.toString());
-        tooltip.setShowDelay(Duration.ZERO);
+        //tooltip.setShowDelay(Duration.ZERO);
         Tooltip.install(point, tooltip);
         canvas.getChildren().add(point);
     }
