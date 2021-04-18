@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="container" hgap="5.0" prefHeight="1200" prefWidth="930" vgap="5.0"
+          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapFX.Controller">
+   <padding>
+      <Insets left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <Label text="DATA SOURCE URL " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+   <TextField fx:id="textField" focusTraversable="false" prefWidth="420.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+   <Button fx:id="button" onAction="#handleButtonAction" prefWidth="70.0" text="START" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+   <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" prefWidth="230" GridPane.columnIndex="3" GridPane.rowIndex="0">
+      <font>
+         <Font name="Consolas" size="12.0" />
+      </font>
+   </Label>
+   <Button fx:id="about"  onAction="#handleAboutButtonAction" prefWidth="70.0" text="ABOUT" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+   <Pane fx:id="canvas" prefHeight="1160" prefWidth="800"
+         GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+</GridPane>
