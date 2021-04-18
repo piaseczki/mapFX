@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.*;
@@ -91,20 +90,20 @@ public class Controller {
     private void runPeriodically() {
         loadRecordsPeriodically = new Timeline(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
 
-                    @Override
-                    public void handle(ActionEvent event) {
+            @Override
+            public void handle(ActionEvent event) {
 
-                        if (secondsLeft < 0) {
-                            secondsLeft = reloadInterval;
-                            loadRecords(textField.getText());
-                        } else {
-                            if (!button.getText().equals("LOADING")) {
-                                label.setText(String.format("AUTO RELOAD IN %2d SEC.",secondsLeft));
-                            }
-                            secondsLeft--;
-                        }
+                if (secondsLeft < 0) {
+                    secondsLeft = reloadInterval;
+                    loadRecords(textField.getText());
+                } else {
+                    if (!button.getText().equals("LOADING")) {
+                        label.setText(String.format("AUTO RELOAD IN %2d SEC.",secondsLeft));
                     }
-                }), new KeyFrame(Duration.seconds(1)));
+                    secondsLeft--;
+                }
+            }
+        }), new KeyFrame(Duration.seconds(1)));
         loadRecordsPeriodically.setCycleCount(Timeline.INDEFINITE);
         loadRecordsPeriodically.play();
     }
@@ -190,33 +189,3 @@ public class Controller {
         canvas.getChildren().addAll(horizontalLine, verticalLine, origin);
     }
 }
-
-class Record {
-    private int x;
-    private int y;
-    private String name;
-
-    public Record(int x, int y, String name) {
-        this.x = x;
-        this.y = y;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("X %4d | Y %4d | NAME %8s", x, y, name);
-    }
-
-    public void printOnCanvas(Pane canvas) {
-        double transX = canvas.getWidth() * 0.5 + x * 0.5;
-        double transY = canvas.getHeight() * 0.75 - y * 0.5;
-        Circle point = new Circle(8);
-        point.setTranslateX(transX);
-        point.setTranslateY(transY);
-        Tooltip tooltip = new Tooltip(this.toString());
-        //tooltip.setShowDelay(Duration.ZERO);
-        Tooltip.install(point, tooltip);
-        canvas.getChildren().add(point);
-    }
-}
-
